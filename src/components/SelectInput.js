@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const TextInput = props => {
+const SelectInput = props => {
   let wrapperClass = 'form-group';
   if (props.error.length > 0) {
     wrapperClass += 'has-error';
@@ -10,21 +10,24 @@ const TextInput = props => {
     <div className={wrapperClass}>
       <label htmlFor={props.id}>{props.label}</label>
       <div className="field">
-        <input
+        <select
           id={props.id}
-          type="text"
           name={props.name}
           onChange={props.onChange}
+          value={props.value || ''}
           className="form-control"
-          value={props.value}
-        />
+        >
+          <option value="" />
+          <option value="1">Cory House</option>
+          <option value="2">Scott Allen</option>
+        </select>
       </div>
       {props.error && <div className="alert alert-danger">{props.error}</div>}
     </div>
   );
 };
 
-TextInput.propTypes = {
+SelectInput.propTypes = {
   id: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
@@ -33,8 +36,8 @@ TextInput.propTypes = {
   error: PropTypes.string,
 };
 
-TextInput.defaultProps = {
+SelectInput.defaultProps = {
   error: '',
 };
 
-export default TextInput;
+export default SelectInput;
